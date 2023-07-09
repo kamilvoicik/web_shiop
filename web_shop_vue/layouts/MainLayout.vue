@@ -144,6 +144,7 @@
     </div>
   </div>
 
+  <Loading v-if="userStore.isLoading" />
   <div class="lg:pt-[150px] md:pt-[130px] pt-[80px]" />
   <slot />
 </template>
