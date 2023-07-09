@@ -147,9 +147,13 @@
   <Loading v-if="userStore.isLoading" />
   <div class="lg:pt-[150px] md:pt-[130px] pt-[80px]" />
   <slot />
+  <Footer v-if="!userStore.isLoading" />
 </template>
 
 <script setup>
+import { useUserStore } from "~/stores/user";
+const userStore = useUserStore();
+
 let isAccountMenu = ref(false);
 let isCartHover = ref(false);
 let isSearching = ref(false);
