@@ -5,7 +5,7 @@
         <div class="md:w-[65%]">
           <div class="bg-white rounded-lg p-4">
             <div class="text-xl font-semibold mb-2">Shipping Address</div>
-            <div v-if="true">
+            <div v-if="false">
               <NuxtLink
                 to="/address"
                 class="flex items-center pb-2 text-blue-500 hover:text-red-400"
@@ -13,7 +13,40 @@
                 <Icon name="mdi:plus" size="18" class="mr-2" />
                 Update Address
               </NuxtLink>
+              <div class="pt-2 border-t">
+                <div class="underline pb-1">Delivery Address</div>
+                <ul class="text-xs">
+                  <li class="flex items-center gap-2">
+                    <div>Contact name:</div>
+                    <div class="font-bold">TEST</div>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <div>Address:</div>
+                    <div class="font-bold">TEST</div>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <div>Zip Code:</div>
+                    <div class="font-bold">TEST</div>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <div>City:</div>
+                    <div class="font-bold">TEST</div>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <div>Country:</div>
+                    <div class="font-bold">TEST</div>
+                  </li>
+                </ul>
+              </div>
             </div>
+            <NuxtLink
+              v-else
+              to="/address"
+              class="flex items-center text-blue-500 hover:text-red-400"
+            >
+              <Icon name="mdi:plus" size="18" class="mr-2" />
+              Add New Address
+            </NuxtLink>
           </div>
         </div>
       </div>
