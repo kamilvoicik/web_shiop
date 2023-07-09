@@ -48,6 +48,11 @@
               Add New Address
             </NuxtLink>
           </div>
+          <div id="Items" class="bg-white rounded-lg p-4 mt-4">
+            <div v-for="product in products">
+              <CheckoutItem :product="product" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -84,6 +89,23 @@ const stripeInit = async () => {};
 const pay = async () => {};
 const createOrder = async () => {};
 const showErroe = async () => {};
+
+const products = [
+  {
+    id: 1,
+    title: "Title 1",
+    description: "This is a description",
+    url: "https://picsum.photos/id/6/800/800",
+    price: 9899,
+  },
+  {
+    id: 2,
+    title: "Title 2",
+    description: "This is a description",
+    url: "https://picsum.photos/id/7/800/800",
+    price: 9999,
+  },
+];
 </script>
 
 <style lang="scss" scoped></style>
