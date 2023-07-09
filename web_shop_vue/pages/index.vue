@@ -14,6 +14,7 @@
 
 <script setup>
 import MainLayout from "~/layouts/MainLayout.vue";
+import ProductComponent from "~/components/ProductComponent.vue";
 
 const products = [
   {
