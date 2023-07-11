@@ -35,7 +35,7 @@ let isFocused = ref(false);
 
 const inputComputed = computed({
   get: () => input.value,
-  set: (value) => emit("update:input", val),
+  set: (value) => emit("update:input", value),
 });
 </script>
 
