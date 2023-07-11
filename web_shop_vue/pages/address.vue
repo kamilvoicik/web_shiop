@@ -13,6 +13,34 @@
               inputType="text"
               :error="error && error.type == 'contactName' ? error.message : ''"
             />
+            <TextInput
+              class="w-full mt-2"
+              placeholder="Address"
+              v-model:input="address"
+              inputType="text"
+              :error="error && error.type == 'address' ? error.message : ''"
+            />
+            <TextInput
+              class="w-full mt-2"
+              placeholder="Zip Code"
+              v-model:input="zipCode"
+              inputType="text"
+              :error="error && error.type == 'zipCode' ? error.message : ''"
+            />
+            <TextInput
+              class="w-full mt-2"
+              placeholder="City"
+              v-model:input="city"
+              inputType="text"
+              :error="error && error.type == 'city' ? error.message : ''"
+            />
+            <TextInput
+              class="w-full mt-2"
+              placeholder="Country"
+              v-model:input="country"
+              inputType="text"
+              :error="error && error.type == 'country' ? error.message : ''"
+            />
           </form>
         </div>
       </div>
