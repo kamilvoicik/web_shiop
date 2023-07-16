@@ -216,7 +216,12 @@ const createOrder = async (stripeId) => {
   })
 }
 
-const showError = async () => { };
+const showError = (errorMsgText) => {
+  let errorMsg = document.querySelector("#card-error");
+
+  errorMsg.textContent = errorMsgText;
+  setTimeout(() => { errorMsg.textContent = "" }, 4000);
+};
 
 </script>
 
