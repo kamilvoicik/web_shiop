@@ -175,7 +175,30 @@ const stripeInit = async () => {
 
   isProcessing.value = false
 }
-const pay = async () => { };
+
+const pay = async () => {
+  if (currentAddress.value && currentAddress.value.data == '') {
+    showError('Please add shipping address')
+    return
+  }
+  isProcessing.value = true
+
+  let result = await stripe.confirmCardPayment(clientSecret, {
+    payment_method: { card: card },
+  })
+
+  if (result.error) {
+    showError(result.error.message);
+    isProcessing.value = false
+  } else {
+    await createOrder(result.paymentIntent.id)
+    userStore.cart = []
+    userStore.checkout = []
+    setTimeout(() => {
+      return navigateTo('/success')
+    }, 500)
+  }
+}
 const createOrder = async () => { };
 const showError = async () => { };
 
