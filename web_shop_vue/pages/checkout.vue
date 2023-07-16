@@ -199,7 +199,23 @@ const pay = async () => {
     }, 500)
   }
 }
-const createOrder = async () => { };
+
+const createOrder = async (stripeId) => {
+  await useFetch('/api/prisma/create-order', {
+    method: "POST",
+    body: {
+      userId: user.value.id,
+      stripeId: stripeId,
+      name: currentAddress.value.data.name,
+      address: currentAddress.value.data.address,
+      zipcode: currentAddress.value.data.zipcode,
+      city: currentAddress.value.data.city,
+      country: currentAddress.value.data.country,
+      products: userStore.checkout
+    }
+  })
+}
+
 const showError = async () => { };
 
 </script>
