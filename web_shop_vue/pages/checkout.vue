@@ -102,14 +102,13 @@ let isProcessing = ref(false);
 let currentAddress = ref(null);
 
 onBeforeMount(async () => {
-  if (userStore.checkout.lenght < 1) {
+  if (userStore.checkout.length < 1) {
     return navigateTo('/shoppingcart')
   }
 
   total.value = 0.00
-
   if (user.value) {
-    currentAddress.value = await fetch(`/api/prisma/get-address-by-user/${user.value.id}`)
+    currentAddress.value = await useFetch(`/api/prisma/get-address-by-user/${user.value.id}`)
     setTimeout(() => userStore.isLoading = false, 200)
   }
 })
@@ -140,7 +139,7 @@ watch(
 const stripeInit = async () => { };
 const pay = async () => { };
 const createOrder = async () => { };
-const showErroe = async () => { };
+const showError = async () => { };
 
 </script>
 
