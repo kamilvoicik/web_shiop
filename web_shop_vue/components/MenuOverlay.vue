@@ -103,6 +103,9 @@ import { useUserStore } from '~/stores/user'
 
 const userStore = useUserStore();
 
+const client = useSupabaseClient();
+const user = useSupabaseUser();
+
 const goTo = (url) => {
     userStore.isMenuOverlay = false;
     return navigateTo(`/${url}`);
