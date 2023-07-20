@@ -69,9 +69,19 @@
               <div class="border border-gray-500 p-2 rounded-sm" id="card-element" />
 
               <p id="card-error" role="alert" class="text-red-700 text-center font-semibold" />
-              <button :disabled="isProcessing" type="submit"
-                class="mt-4 bg-gradient-to-r from-[#FE630C] to-[#FF3200] w-full text-white text-[21px] font-semibold p-1.5 rounded-full"
-                :class="isProcessing ? 'opacity-70' : 'opacity-100'">
+
+              <button :disabled="isProcessing" type="submit" class="
+                                mt-4
+                                    bg-gradient-to-r 
+                                  from-[#FE630C] 
+                                  to-[#FF3200]
+                                    w-full 
+                                    text-white 
+                                    text-[21px] 
+                                    font-semibold 
+                                    p-1.5 
+                                    rounded-full
+                                " :class="isProcessing ? 'opacity-70' : 'opacity-100'">
                 <Icon v-if="isProcessing" name="eos-icons:loading" />
                 <div v-else>Place order</div>
               </button>
@@ -90,20 +100,20 @@
 </template>
 
 <script setup>
-import MainLayout from "~/layouts/MainLayout.vue";
-import { useUserStore } from "~/stores/user";
+import MainLayout from '~/layouts/MainLayout.vue';
+import { useUserStore } from '~/stores/user';
+const userStore = useUserStore()
+const user = useSupabaseUser()
+const route = useRoute()
 
-const route = useRoute();
-const userStore = useUserStore();
-const user = useSupabaseUser();
-
-let elements = null;
-let stripe = null;
+let stripe = null
+let elements = null
 let card = null
 let form = null
-let total = ref(0);
-let isProcessing = ref(false);
-let currentAddress = ref(null);
+let total = ref(0)
+let clientSecret = null
+let currentAddress = ref(null)
+let isProcessing = ref(false)
 
 onBeforeMount(async () => {
   if (userStore.checkout.length < 1) {
@@ -124,33 +134,31 @@ watchEffect(() => {
 })
 
 onMounted(async () => {
-  isProcessing.value = false;
+  isProcessing.value = false
 
-  userStore.checkout.forEach((item) => {
-    total.value += item.price;
-  });
-});
+  userStore.checkout.forEach(item => {
+    total.value += item.price
+  })
+})
 
-watch(
-  () => total.value,
-  () => {
-    if (total.value > 0) {
-      stripeInit();
-    }
+watch(() => total.value, () => {
+  if (total.value > 0) {
+    stripeInit()
   }
-);
+})
 
 const stripeInit = async () => {
   const runtimeConfig = useRuntimeConfig()
-  stripe = Stripe(runtimeConfig.stripePk);
+  stripe = Stripe(runtimeConfig.public.stripePk);
 
-  let res = await $fetch('/api/stripe/paymentintent', {
+  let res = await $fetch('server/api/stripe/paymentintent.js', {
     method: 'POST',
     body: {
       amount: total.value,
     }
   })
   clientSecret = res.client_secret
+
   elements = stripe.elements();
   var style = {
     base: {
@@ -222,7 +230,6 @@ const showError = (errorMsgText) => {
   errorMsg.textContent = errorMsgText;
   setTimeout(() => { errorMsg.textContent = "" }, 4000);
 };
-
 </script>
 
 <style lang="scss" scoped></style>
